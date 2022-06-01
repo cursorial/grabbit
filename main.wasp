@@ -1,0 +1,41 @@
+app grabbit {
+  title: "grabbit"
+}
+
+route RootRoute { path: "/", to: Resources }
+
+page Resources {
+  component: import Resources from "@ext/Resources.js"
+}
+
+entity Resource {=psl
+  id Int @id @default(autoincrement())
+  name String
+  reason String
+  claimedBy String
+psl=}
+
+query getResources {
+  fn: import { getResources } from "@ext/queries.js",
+  entities: [Resource]
+}
+
+action createResource {
+  fn: import { createResource } from "@ext/actions.js",
+  entities: [Resource]
+}
+
+action deleteResource {
+  fn: import { deleteResource } from "@ext/actions.js",
+  entities: [Resource]
+}
+
+action claimResource {
+  fn: import { claimResource } from "@ext/actions.js",
+  entities: [Resource]
+}
+
+action releaseResource {
+  fn: import { releaseResource } from "@ext/actions.js",
+  entities: [Resource]
+}
